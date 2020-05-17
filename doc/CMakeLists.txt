@@ -1,0 +1,10 @@
+include_directories ("${PROJECT_SOURCE_DIR}/getit_library/src")
+
+FIND_PACKAGE(Doxygen)
+ IF(DOXYGEN_FOUND)
+    SET(DOXYGEN_INPUT "${CMAKE_SOURCE_DIR}/getit_library/src")
+    CONFIGURE_FILE(${CMAKE_SOURCE_DIR}/doc/doxygen.conf.in ${CMAKE_CURRENT_BINARY_DIR}/doxygen.conf)
+    ADD_CUSTOM_TARGET(doc COMMAND ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_BINARY_DIR}/doxygen.conf)
+ ELSE(DOXYGEN_FOUND)
+    MESSAGE(STATUS "WARNING: Doxygen not found - Reference manual will not be created")
+ENDIF(DOXYGEN_FOUND)

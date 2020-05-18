@@ -2,6 +2,7 @@ find_package(Boost COMPONENTS program_options system filesystem iostreams REQUIR
 find_package(PkgConfig REQUIRED)
 #pkg_check_modules(LIBXML++ REQUIRED libxml++-2.6)
 pkg_check_modules(YAML REQUIRED yaml-cpp)
+pkg_check_modules(OPENCV REQUIRED opencv)
 
 # add lib source files
 file(GLOB LIB_SOURSEC ${PROJECT_SOURCE_DIR}/trainfps_library/src/*.cpp)
@@ -11,4 +12,4 @@ include_directories(${PROJECT_SOURCE_DIR}/trainfps_library/src ${LIBXML++_INCLUD
 add_library(trainfps_library SHARED ${LIB_SOURSEC} )
 
 #link 
-target_link_libraries(trainfps_library ${Boost_LIBRARIES} ${YAML_LIBRARIES} )
+target_link_libraries(trainfps_library ${Boost_LIBRARIES} ${YAML_LIBRARIES} ${OPENCV_LIBRARIES} )

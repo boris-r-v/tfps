@@ -1,19 +1,16 @@
 #include <parcer.h>
+#include <data_structs.h>
+
+#include <fstream>	//for ifstream	
+#include <iostream>	//for cout
+#include <opencv2/opencv.hpp>
+#include <map>
 
 #include <boost/filesystem.hpp>
 #include <boost/range/iterator_range.hpp>
-#include <boost/iostreams/filtering_streambuf.hpp>
-#include <boost/iostreams/copy.hpp>
-#include <boost/iostreams/filter/gzip.hpp>
 
-#include <fstream>	//for ifstream	
-#include <sstream>	//for stringstream
-#include <iostream>	//for cout
-
-#include <yaml-cpp/yaml.h>
 
 namespace fs = boost::filesystem;
-namespace bio = boost::iostreams;
 
 int TFPS::parce( TFPS::CF cf )
 {
@@ -24,29 +21,24 @@ int TFPS::parce( TFPS::CF cf )
 	for( auto& entry : boost::make_iterator_range(fs::directory_iterator( cf.yaml_ ), {} ) )
 	{
 	    std::string s ( entry.path().string() );
-	    
-	    /*decompress*/
-	    std::ifstream file(s, std::ios_base::in | std::ios_base::binary);
-	    bio::filtering_streambuf<bio::input> in;
-	    in.push(bio::gzip_decompressor());
-	    in.push(file);
-	    std::stringstream ss;
-	    boost::iostreams::copy(in, ss );    
 
 	    std::cout << "Parce: " << s << std::endl;
 
-	    /*yaml-parce*/
-	    try
-	    {
-		YAML::Node doc = YAML::Load ( ss );
-		std::cout <<" EEE: " << doc << std::endl;	    
-	    }
-	    catch ( std::exception& e )
-	    {
-		std::cout << "  - fail to load: " << e.what() << std::endl;
-	    }
+	    cv::FileStorage fs2( s, cv::FileStorage::READ);    
+	    header h( fs2["header"] );
+    
+	    //std::cout << h << std::endl;	    	    
+    
+	    std::vector <shot> sh;
+	    fs2["shots"] >> sh;
+
+	    //for ( auto & d : sh ) std::cout << d << std::endl;
+
 	}
         return 0;
     }
     return 1;
 }
+
+
+

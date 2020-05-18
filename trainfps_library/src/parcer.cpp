@@ -24,8 +24,6 @@ int TFPS::parce( TFPS::CF cf )
     out_str << "file;device1;fps_device1;device2;fps_device2;device3;fps_device3;device4;fps_device4;device5;fps_device5;device6;fps_device6"<< std::endl;;
     if ( fs::is_directory ( cf.yaml_ ) )
     {
-	std::cout << cf.yaml_ << " is a directory containing:\n";
-	    
 	for( auto& entry : boost::make_iterator_range(fs::directory_iterator( cf.yaml_ ), {} ) )
 	{
 	    if ( handle_this_file( cf, entry.path().filename().string() ) )

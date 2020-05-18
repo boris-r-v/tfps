@@ -13,7 +13,7 @@
 # The PROJECT_NAME tag is a single word (or a sequence of word surrounded
 # by quotes) that should identify the project. 
 
-PROJECT_NAME         = "Программа для парсинга задач менеджерам"
+PROJECT_NAME         = "FPS calculator"
 
 # The PROJECT_NUMBER tag can be used to enter a project or revision number.
 # This could be handy for archiving the generated documentation or 

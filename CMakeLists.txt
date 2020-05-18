@@ -1,4 +1,4 @@
-project(tfps)
+project(fps_framesdata)
 cmake_minimum_required(VERSION 3.5)
 
 #message(${CMAKE_SYSTEM_PROCESSOR})

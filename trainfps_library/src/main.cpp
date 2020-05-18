@@ -32,7 +32,7 @@ int TFPS::Main::run(int argc, char** argv)
 	return 1;
     }
 
-    if ( vm.empty() or vm.count("help") or !vm.count("dir") or !vm.count("output") )
+    if ( vm.empty() or vm.count("help") or !vm.count("dir") )
     {
 	std::cout << "  Welcome to TFPS - fps calculator  " << std::endl;
 	std::cout << "  Author: Boris.R <borisrozhkin@gmail.com>" << std::endl << std::endl;
@@ -43,9 +43,16 @@ int TFPS::Main::run(int argc, char** argv)
     }
 
     std::string yaml_path ( vm["dir"].as<std::string>() );
-    std::string csv_path ( vm["output"].as<std::string>() );
-    int begin (-1), end(1000);
+    std::string csv_path;
+    try
+    {
+        csv_path = vm["output"].as<std::string>();
+    }
+    catch ( std::exception & e )    
+    {
+    }
 
+    int begin (-1), end(1000);
     try
     {
         begin = vm["start"].as <int>( );

@@ -12,8 +12,8 @@ int TFPS::Main::run(int argc, char** argv)
     ("dir,d",po::value<std::string>() ,"Specifies the directory with yaml-files from devices")
     ("output,o",po::value<std::string>() ,"Specifies the path to output csv file")
     ("help,h", "Produce help message")
-    ("start,s",po::value<std::string>() , "Specifies begin of episodes")
-    ("end,e",po::value<std::string>() , "Specifies end of episodes")
+    ("start,s",po::value<int>() , "Specifies begin of episodes")
+    ("end,e",po::value<int>() , "Specifies end of episodes")
     ;
 
     boost::program_options::options_description desc;
@@ -44,7 +44,7 @@ int TFPS::Main::run(int argc, char** argv)
 
     std::string yaml_path ( vm["dir"].as<std::string>() );
     std::string csv_path ( vm["output"].as<std::string>() );
-    int begin (-1), end(-1);
+    int begin (-1), end(1000);
 
     try
     {

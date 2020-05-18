@@ -1,11 +1,12 @@
 #include <data_structs.h>
 #include <fps_calc.h>
 
+static std::set <std::string> dev_;
 
 TFPS::device::device( cv::FileNode s )
 {
     s["name"] >> name;
-    fps_calc::instance().device( name );
+    dev_.insert( name );
     s["type"] >> type;
     s["readFrom"] >> readFrom;
     s["deviceId"] >> deviceId;
@@ -65,7 +66,7 @@ void TFPS::shot::read( cv::FileNode const& n )
 {
     n["grabNumber"] >> grabNumber;
     n["grabMsec"] >> grabMsec;
-    for ( auto& d : fps_calc::instance().device() )
+    for ( auto& d : dev_ )
     {
 	cv::FileNode fn = n[d];
 	if ( !fn.empty() )

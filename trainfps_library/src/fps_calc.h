@@ -6,23 +6,26 @@
 */
 
 #include <string>
-#include <set>
+#include <vector>
+#include <map>
 namespace TFPS
 {
-
+    struct capture;
 /**
     @brief 
 */
     class fps_calc
     {
-	    std::set <std::string> devices_;
+	    std::map <std::string, std::vector<int > > fps_;
 	public:
 	    fps_calc() = default;
 	    ~fps_calc() = default;
 
 	    static fps_calc& instance();
-	    void device( std::string const& );
-	    std::set <std::string> const& device();
+
+	    void add_captur( std::pair <std::string, capture> const& );
+
+    	    std::string calc_fps( );
     };
 }
 

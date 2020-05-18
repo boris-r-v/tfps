@@ -10,7 +10,7 @@ namespace TFPS
 {
 
 /**
-    @brief Структура с сонфигурационными параметроами
+    @brief Configure struct
 */
     struct CF
     {

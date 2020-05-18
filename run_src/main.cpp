@@ -6,7 +6,5 @@ int main(int argc, char** argv )
 {
 
     TFPS::Main main;
-    main.run( argc, argv );
-
-    return 0;
+    return main.run( argc, argv );
 }

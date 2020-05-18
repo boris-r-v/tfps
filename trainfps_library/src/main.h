@@ -1,7 +1,7 @@
 #ifndef TFPS_MAIN_H
 #define TFPS_MAIN_H
 /**
-    @brief Class Main - запускает программу используя опции командной строки.
+    @brief Class Main - read command line parametrs
 
 */
 
@@ -9,7 +9,7 @@ namespace TFPS
 {
 
 /**
-    @brief Класс запуска программы
+    @brief 
 	
 */
     class Main

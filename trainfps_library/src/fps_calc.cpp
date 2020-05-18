@@ -1,4 +1,7 @@
+#include <data_structs.h>
 #include <fps_calc.h>
+#include <iostream>
+#include <sstream>
 
 TFPS::fps_calc& TFPS::fps_calc::instance()
 {
@@ -6,12 +9,24 @@ TFPS::fps_calc& TFPS::fps_calc::instance()
     return inst;
 }
 
-void TFPS::fps_calc::device( std::string const& _s )
+void TFPS::fps_calc::add_captur( std::pair <std::string, capture> const& _v)
 {
-    devices_.insert( _s );
+    fps_[_v.first].push_back( _v.second.grabMsec );
 }
 
-std::set <std::string> const& TFPS::fps_calc::device()
+std::string TFPS::fps_calc::calc_fps( )
 {
-    return devices_;
+    std::stringstream ss;
+    for ( auto& d : fps_ )
+    {
+
+	double max( d.second.front() ), min( d.second.front() ); 
+	for  ( auto& ms : d.second )
+	{
+	    max = max < ms ? ms : max;
+	    min = min > ms ? ms : min;
+	}
+	ss << d.first << ";" << ( max - min)/(1000 * d.second.size()) << ";";
+    }
+    return ss.str();
 }

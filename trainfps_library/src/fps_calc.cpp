@@ -26,7 +26,7 @@ std::string TFPS::fps_calc::calc_fps( )
 	    max = max < ms ? ms : max;
 	    min = min > ms ? ms : min;
 	}
-	ss << d.first << ";" << ( max - min)/(1000 * d.second.size()) << ";";
+	ss << d.first << ";\t" << ( max - min)/(1000 * d.second.size()) << std::endl;
     }
     return ss.str();
 }

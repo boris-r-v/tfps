@@ -1,4 +1,4 @@
-find_package(Boost COMPONENTS program_options system filesystem iostreams REQUIRED )
+find_package(Boost COMPONENTS program_options filesystem iostreams REQUIRED )
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(OPENCV REQUIRED opencv)
 

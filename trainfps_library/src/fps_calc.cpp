@@ -1,6 +1,5 @@
 #include <data_structs.h>
 #include <fps_calc.h>
-#include <iostream>
 #include <sstream>
 
 TFPS::fps_calc& TFPS::fps_calc::instance()

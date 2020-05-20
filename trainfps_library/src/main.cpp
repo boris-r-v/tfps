@@ -1,5 +1,6 @@
 #include <main.h>
 #include <parcer.h>
+#include <iostream>
 #include <boost/program_options.hpp>		
 
 namespace po = boost::program_options;
